@@ -25,6 +25,7 @@ namespace Text_Based_adventure
                 if (keuze == "start")
                 {
                     huidig = "ingang";
+                    Speel();
                 }
                 else if (keuze == "stop")
                 {
@@ -58,6 +59,62 @@ namespace Text_Based_adventure
                 Typ 'start' om te beginnen, 'laden' om verder te gaan,
                 'help' voor uitleg, 'stop' om af te sluiten.
                 """);
+        }
+
+        static void Speel()
+        {
+            bool bezig = true;
+
+            Console.Clear();
+            ToonScene();
+
+            while (bezig)
+            {
+                Scene scene = scenes[huidig];
+
+                // Geen keuzes meer = einde van het verhaal
+                if (scene.Keuzes.Count == 0)
+                {
+                    Console.WriteLine("Druk op Enter om terug te gaan naar het menu.");
+                    Console.ReadLine();
+                    bezig = false;
+                }
+                else
+                {
+                    string invoer = LeesInvoer();
+
+                    if (scene.Keuzes.ContainsKey(invoer))
+                    {
+                        huidig = scene.Keuzes[invoer];
+                        Console.Clear();
+                        ToonScene();
+                    }
+                    else
+                    {
+                        switch (invoer)
+                        {
+                            case "stop":
+                                bezig = false;
+                                break;
+
+                            default:
+                                Console.WriteLine("\"Dat begrijp ik niet. En ik begrijp bijna alles.\"");
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        static void ToonScene()
+        {
+            Scene scene = scenes[huidig];
+
+            Console.WriteLine("[ Akt " + scene.Akt + " ]  -  typ 'help' voor commando's");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine(scene.Beschrijving);
+            Console.WriteLine();
         }
 
         static string LeesInvoer()
