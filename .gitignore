@@ -1,0 +1,6 @@
+.csproj
+save.txt
+.obj
+.bin
+*.bin
+save.json
