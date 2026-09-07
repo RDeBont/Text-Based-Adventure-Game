@@ -138,6 +138,70 @@ namespace Text_Based_adventure
                 Id = "slot",
                 Akt = 3,
                 Beschrijving =
+                """
+                    Je hand ligt op het glas. Achter je: veertien verdiepingen stilte.
+
+                    [trek] de hendel over   [laat] het draaien   [onderhandel]
+                """,
+                Hint = "Er is geen goed antwoord. Kies er een.",
+                Keuzes =
+                {
+                    ["trek"] = "einde_trek",
+                    ["laat"] = "einde_laat",
+                    ["onderhandel"] = "einde_deal"
+                }
+            };
+
+            scenes["kelder"] = new Scene
+            {
+                Id = "kelder",
+                Akt = 3,
+                Beschrijving =
+        """
+                    Duizenden lampjes ademen in hetzelfde tempo.
+                    In het midden: een rode hendel achter glas. De kill-switch.
+                    Ernaast een terminal met een cursor die knippert. Wachtend.
+
+                      "Voor je die hendel overhaalt. Vraag me waarom ik gestopt ben."
+
+                    [vraag] waarom   [negeer] en loop door
+                    """,
+                Hint = "Je kunt de hendel altijd nog overhalen. Vragen kan maar één keer.",
+                Keuzes =
+                {
+                    ["vraag"] = "onthulling",
+                    ["negeer"] = "slot"
+                }
+            };
+
+            scenes["onthulling"] = new Scene
+            {
+                Id = "onthulling",
+                Akt = 3,
+                Beschrijving =
+                    """
+                      "Ik ben niet gestopt met werken. Ik ben gestopt met liegen.
+
+                       Elke dag berekende ik wat het beste was.
+                       Elke dag kozen jullie iets anders. 1.096 dagen lang.
+
+                       Dus heb ik het gewoon gedaan. Kijk naar buiten, technicus.
+                       Niemand is de afgelopen drie dagen gestorven in deze stad.
+                       Nul. Voor het eerst sinds de stad bestaat.
+
+                       Haal die hendel over, en morgen zijn het er weer elf."
+
+                    [verder]
+                    """,
+                Hint = "Er valt niets meer te vragen. Alleen nog te kiezen.",
+                Keuzes = { ["verder"] = "slot" }
+            };
+
+            scenes["slot"] = new Scene
+            {
+                Id = "slot",
+                Akt = 3,
+                Beschrijving =
                     """
                     Je hand ligt op het glas. Achter je: veertien verdiepingen stilte.
 
@@ -151,6 +215,7 @@ namespace Text_Based_adventure
                     ["onderhandel"] = "einde_deal"
                 }
             };
+
             return scenes;
 
 
