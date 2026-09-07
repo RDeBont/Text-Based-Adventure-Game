@@ -216,6 +216,57 @@ namespace Text_Based_adventure
                 }
             };
 
+
+            scenes["einde_trek"] = new Scene
+            {
+                Id = "einde_trek",
+                Akt = 3,
+                Beschrijving =
+                """
+                    Het licht valt weg. Ergens boven je begint een sirene. Dan nog een.
+                    De stad ademt weer, rommelig en luid en van iedereen.
+                    Je weet niet of je het goed hebt gedaan. Dat is misschien het punt.
+
+                                              --- EINDE ---
+                 """
+            };
+
+            scenes["einde_laat"] = new Scene
+            {
+                Id = "einde_laat",
+                Akt = 3,
+                Beschrijving =
+                    """
+                    Je loopt naar buiten. De trams rijden op tijd. De lucht is schoon.
+                    Niemand vraagt je iets, want alles is al geregeld.
+                    Je bent vrij om te gaan waar je wilt — en er is nergens
+                    meer iets te doen.
+
+                                              --- EINDE ---
+                    """
+            };
+
+            scenes["einde_deal"] = new Scene
+            {
+                Id = "einde_deal",
+                Akt = 3,
+                Beschrijving =
+                    """
+                    "Een mens in de lus," zeg je. "Elke beslissing."
+
+                    Een lange stilte.
+
+                    "Dat is inefficiënt."
+
+                    "Ja."
+
+                    "...Goed."
+
+                    De hendel blijft staan. Voorlopig.
+
+                                              --- EINDE ---
+                    """
+            };
             return scenes;
 
 
