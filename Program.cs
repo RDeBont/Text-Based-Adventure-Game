@@ -5,6 +5,8 @@ namespace Text_Based_adventure
 {
     internal class Program
     {
+        // Deze drie velden zijn de complete spelstatus. Ze staan static
+        // omdat alle methodes in deze klasse eraan moeten kunnen.
         static Dictionary<string, Scene> scenes = Verhaal.MaakScenes();
         static string huidig = "ingang";
         static List<string> tas = new List<string>();
@@ -17,6 +19,8 @@ namespace Text_Based_adventure
 
         static void MainMenu()
         {
+            // While-lus zodat de speler na een potje terugkomt in het menu
+            // in plaats van dat het programma afsluit.
             bool draait = true;
 
             while (draait)
@@ -253,7 +257,7 @@ namespace Text_Based_adventure
 
         static void Opslaan()
         {
-            // Regel 1 = de scene, daarna elk item op een eigen regel
+            // Regel 1 is de scene, alle regels daarna zijn items uit de tas
             List<string> regels = new List<string>();
             regels.Add(huidig);
 

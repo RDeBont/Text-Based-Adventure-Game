@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Text_Based_adventure
 {
+    // Deze klasse bevat alleen data, geen logica. Daardoor kan het verhaal
+    // groeien zonder dat Program.cs verandert.
     internal class Scene
     {
         public string Id { get; set; } = "";

@@ -5,6 +5,8 @@ namespace Text_Based_adventure
 {
     internal static class Verhaal
     {
+        // Alle scenes staan hier als data. Een scene toevoegen betekent hier
+        // een regel bijzetten, niet een if/else-tak in Program.cs.
         public static Dictionary<string, Scene> MaakScenes()
         {
             var scenes = new Dictionary<string, Scene>();
