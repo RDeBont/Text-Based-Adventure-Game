@@ -89,18 +89,13 @@ namespace Text_Based_adventure
                         Console.Clear();
                         ToonScene();
                     }
+                    else if (invoer == "stop")
+                    {
+                        bezig = false;
+                    }
                     else
                     {
-                        switch (invoer)
-                        {
-                            case "stop":
-                                bezig = false;
-                                break;
-
-                            default:
-                                Console.WriteLine("\"Dat begrijp ik niet. En ik begrijp bijna alles.\"");
-                                break;
-                        }
+                        Console.WriteLine("\"Dat begrijp ik niet. En ik begrijp bijna alles.\"");
                     }
                 }
             }
