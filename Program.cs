@@ -27,6 +27,11 @@ namespace Text_Based_adventure
                     huidig = "ingang";
                     Speel();
                 }
+                else if (keuze == "help")
+                {
+                    Help();
+                    Wacht();
+                }
                 else if (keuze == "stop")
                 {
                     draait = false;
@@ -89,6 +94,23 @@ namespace Text_Based_adventure
                         Console.Clear();
                         ToonScene();
                     }
+                    else if (invoer == "kijk")
+                    {
+                        Console.Clear();
+                        ToonScene();
+                    }
+                    else if (invoer == "help")
+                    {
+                        Help();
+                    }
+                    else if (invoer == "doel")
+                    {
+                        ToonDoel();
+                    }
+                    else if (invoer == "hint")
+                    {
+                        Console.WriteLine("\n  " + scene.Hint + "\n");
+                    }
                     else if (invoer == "stop")
                     {
                         bezig = false;
@@ -128,7 +150,47 @@ namespace Text_Based_adventure
         static void Wacht()
         {
             Console.WriteLine("(Druk op een toets om verder te gaan)");
-            Console.ReadKey(true);
+            Console.ReadLine();
+        }
+        static void ToonDoel()
+        {
+            int akt = scenes[huidig].Akt;
+
+            Console.WriteLine();
+            if (akt == 1)
+            {
+                Console.WriteLine("  DOEL: Bereik de serverkelder onder Datacentrum Zuid.");
+            }
+            else if (akt == 2)
+            {
+                Console.WriteLine("  DOEL: Vind het beheerderswachtwoord van dr. Halberd.");
+            }
+            else
+            {
+                Console.WriteLine("  DOEL: Beslis wat er met NEXUS gebeurt.");
+            }
+            Console.WriteLine();
+        }
+
+        static void Help()
+        {
+            Console.WriteLine("""
+
+                --- HOE JE SPEELT ---
+                Je typt commando's. Enter om te bevestigen.
+
+                  kijk       omgeving opnieuw beschrijven
+                  doel       je huidige missie tonen
+                  hint       aanwijzing als je vastzit
+                  tas        je inventaris bekijken
+                  opslaan    voortgang bewaren
+                  stop       terug naar het menu
+
+                Bij keuzes typ je het woord tussen [haakjes],
+                dus 'praat' en niet '[praat]'.
+                NEXUS luistert mee. Het onthoudt wat je kiest.
+
+                """);
         }
     }
 }
