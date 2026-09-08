@@ -163,11 +163,18 @@ namespace Text_Based_adventure
                 return "";
             }
 
-            return invoer.Trim().ToLower();
+            // Spelers typen het woord vaak mét haakjes over: [praat]
+            return invoer.Trim().ToLower().Trim('[', ']').Trim();
         }
 
         static void Wacht()
         {
+            // Buffer legen: anders vangt ReadKey een toets op die als commando bedoeld was
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
+
             Console.WriteLine("(Druk op een toets om verder te gaan)");
             Console.ReadLine();
         }
