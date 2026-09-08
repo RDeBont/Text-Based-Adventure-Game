@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Threading.Tasks;
 
 namespace Text_Based_adventure
 {
@@ -6,6 +7,7 @@ namespace Text_Based_adventure
     {
         static Dictionary<string, Scene> scenes = Verhaal.MaakScenes();
         static string huidig = "ingang";
+        static List<string> tas = new List<string>();
 
         static void Main(string[] args)
         {
@@ -25,6 +27,7 @@ namespace Text_Based_adventure
                 if (keuze == "start")
                 {
                     huidig = "ingang";
+                    tas = new List<string>();
                     Speel();
                 }
                 else if (keuze == "help")
@@ -90,6 +93,7 @@ namespace Text_Based_adventure
 
                     if (scene.Keuzes.ContainsKey(invoer))
                     {
+                        PakItemOp(scene, invoer);
                         huidig = scene.Keuzes[invoer];
                         Console.Clear();
                         ToonScene();
@@ -110,6 +114,10 @@ namespace Text_Based_adventure
                     else if (invoer == "hint")
                     {
                         Console.WriteLine("\n  " + scene.Hint + "\n");
+                    }
+                    else if (invoer == "tas")
+                    {
+                        ToonTas();
                     }
                     else if (invoer == "stop")
                     {
@@ -191,6 +199,38 @@ namespace Text_Based_adventure
                 NEXUS luistert mee. Het onthoudt wat je kiest.
 
                 """);
+        }
+        static void PakItemOp(Scene scene, string invoer)
+        {
+            if (scene.ItemBijKeuze.ContainsKey(invoer))
+            {
+                string item = scene.ItemBijKeuze[invoer];
+
+                if (tas.Contains(item) == false)
+                {
+                    tas.Add(item);
+                    Console.WriteLine("\n[Je hebt nu: " + item + "]");
+                    Wacht();
+                }
+            }
+        }
+
+        static void ToonTas()
+        {
+            Console.WriteLine();
+            if (tas.Count == 0)
+            {
+                Console.WriteLine("  Je tas is leeg.");
+            }
+            else
+            {
+                Console.WriteLine("  In je tas:");
+                foreach (string item in tas)
+                {
+                    Console.WriteLine("   - " + item);
+                }
+            }
+            Console.WriteLine();
         }
     }
 }

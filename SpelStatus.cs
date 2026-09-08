@@ -9,6 +9,7 @@ namespace Text_Based_adventure
     internal class SpelStatus
     {
         public string HuidigeScene { get; set; } = "ingang";
+
         public List<string> Tas { get; set; } = new();
     }
 }
