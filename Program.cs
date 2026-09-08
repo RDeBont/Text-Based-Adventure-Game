@@ -30,6 +30,13 @@ namespace Text_Based_adventure
                     tas = new List<string>();
                     Speel();
                 }
+                else if (keuze == "laden")
+                {
+                    if (Laden())
+                    {
+                        Speel();
+                    }
+                }
                 else if (keuze == "help")
                 {
                     Help();
@@ -118,6 +125,10 @@ namespace Text_Based_adventure
                     else if (invoer == "tas")
                     {
                         ToonTas();
+                    }
+                    else if (invoer == "opslaan")
+                    {
+                        Opslaan();
                     }
                     else if (invoer == "stop")
                     {
@@ -231,6 +242,52 @@ namespace Text_Based_adventure
                 }
             }
             Console.WriteLine();
+        }
+
+        static void Opslaan()
+        {
+            // Regel 1 = de scene, daarna elk item op een eigen regel
+            List<string> regels = new List<string>();
+            regels.Add(huidig);
+
+            foreach (string item in tas)
+            {
+                regels.Add(item);
+            }
+
+            File.WriteAllLines("save.txt", regels);
+            Console.WriteLine("\n[Voortgang opgeslagen. NEXUS heeft een kopie bewaard.]\n");
+        }
+
+        static bool Laden()
+        {
+            if (File.Exists("save.txt") == false)
+            {
+                Console.WriteLine("\n[Geen opgeslagen sessie gevonden.]\n");
+                Wacht();
+                return false;
+            }
+
+            string[] regels = File.ReadAllLines("save.txt");
+
+            if (regels.Length == 0 || scenes.ContainsKey(regels[0]) == false)
+            {
+                Console.WriteLine("\n[Opgeslagen bestand is beschadigd.]\n");
+                Wacht();
+                return false;
+            }
+
+            huidig = regels[0];
+            tas = new List<string>();
+
+            for (int i = 1; i < regels.Length; i++)
+            {
+                tas.Add(regels[i]);
+            }
+
+            Console.WriteLine("\n[Sessie hervat. Je was weg. Ik niet.]\n");
+            Wacht();
+            return true;
         }
     }
 }
